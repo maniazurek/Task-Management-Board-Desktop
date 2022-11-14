@@ -6,11 +6,19 @@ body {
   background-color: #f2f4f7;
 }
 
-.header {
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: inline;
+}
+
+/* .header {
   width: 100%;
   height: 100vh;
   background-color: #f2f4f7;
-}
+} */
 
 .main-content {
   margin-left: 240px;
@@ -123,7 +131,7 @@ body {
 
 .new-task__container-add {
   position: absolute;
-  width: 42%;
+  width: 602px;
   background-color: #fcfcfd;
   padding: 70px 70px 20px 70px;
   border-radius: 8px;
@@ -395,4 +403,67 @@ body {
 
 .simple-task__comments-img {
   width: 24px;
+}
+
+@media all and (max-width: 768px) {
+
+
+  .main-content {
+    margin: 0;
+  }
+
+  .new-task__container-add {
+    top: 0;
+    left: 0;
+    bottom: -100px;
+    right: 0;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+    padding: 30px;
+  }
+
+  .new-task__date-assigne {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .new-task__input-title {
+    font-size: 34px;
+  }
+
+  .new-task__input-description {
+    font-size: 18px;
+  }
+
+  .new-task__container-choose {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .new-task__button-save {
+    bottom: 30px;
+    right: 30px;
+  }
+
+  .new-task__button-cancel {
+    bottom: 30px;
+    right: 121px;
+  }
+
+  .rti--container {
+    width: 95%;
+  }
+
+  .main-content__add-task {
+    bottom: 25px;
+    right: 25px;
+  }
+
+  
+  
+
+
+  
 }

@@ -36,7 +36,7 @@ const FormTask = ({ handleFormSubmit }) => {
   };
 
   return (
-    <form onSubmit={onFormSubmit} className="new-task__container-add">
+    <form onSubmit={onFormSubmit} className="new-task__container-add ">
       <span className="new-task__element-title">
         <label
           className="new-task__label-title"
@@ -84,7 +84,8 @@ const FormTask = ({ handleFormSubmit }) => {
         <TagsInput value={tags} onChange={(newTag) => setTags(newTag)} />
       </span>
       <span className="new-task__container-choose">
-        <span className="new-task__element-date">
+       <span className="new-task__date-assigne">
+       <span className="new-task__element-date">
           <p className="new-task__label-date">Due date</p>
           <DatePicker
             selected={date}
@@ -106,6 +107,7 @@ const FormTask = ({ handleFormSubmit }) => {
             <option value="Maksymilian Olszewski">Maksymilian Olszewski</option>
           </select>
         </span>
+       </span>
         <span className="new-task__element-column">
           <p className="new-task__label-column">Column</p>
           <select

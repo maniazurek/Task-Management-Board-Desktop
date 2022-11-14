@@ -7,7 +7,7 @@ import tagsImage from "../assets/tags.png";
 
 const Navigation = () => {
   return (
-        <div className="side-nav">
+        <div className="side-nav side-nav__hidden">
         <ul className="side-nav__list">
           <li className="side-nav__list-element">
             <a className="side-nav__source" href="#">
