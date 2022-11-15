@@ -111,6 +111,43 @@ body {
 
 .side-nav__source-img {
   width: 16px;
+  height: 16px;
+  background-size: cover;
+}
+
+.side-nav__source-tasks {
+  background-image: url(./assets/tasks.svg);
+}
+
+.side-nav__list-element:hover .side-nav__source-tasks {
+  background-image: url(./assets/tasks-hover.svg);
+}
+
+.side-nav__source-users {
+  background-image: url(./assets/users.svg);
+  width: 14px;
+  height: 17px;
+}
+
+.side-nav__list-element:hover .side-nav__source-users {
+  background-image: url(./assets/users-hover.svg);
+}
+
+.side-nav__source-columns {
+  background-image: url(./assets/columns.svg);
+  height: 18px;
+}
+
+.side-nav__list-element:hover .side-nav__source-columns {
+  background-image: url(./assets/columns-hover.svg);
+}
+
+.side-nav__source-tags {
+  background-image: url(./assets/tags.svg);
+}
+
+.side-nav__list-element:hover .side-nav__source-tags {
+  background-image: url(./assets/tags-hover.svg);
 }
 
 .side-nav__source-desc {
@@ -272,6 +309,10 @@ body {
   color: #98a2b3;
   width: 140px;
   cursor: pointer;
+  appearance: none;
+  background-image: url(./assets/arrow.svg);
+background-position: 116px 8px;
+background-repeat: no-repeat;
 }
 
 .new-task__select-column {
@@ -405,9 +446,16 @@ body {
   width: 24px;
 }
 
+/* .navigation-overlay {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.35);
+} */
+
 @media all and (max-width: 768px) {
-
-
   .main-content {
     margin: 0;
   }
@@ -460,10 +508,4 @@ body {
     bottom: 25px;
     right: 25px;
   }
-
-  
-  
-
-
-  
 }

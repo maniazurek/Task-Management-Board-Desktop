@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import arrowImage from "../assets/arrow.svg";
 
-const FormTask = ({ handleFormSubmit }) => {
+const FormTask = ({ handleFormSubmit, CancelAddTaskOpen}) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState();
   const [assignee, setAssignee] = useState("");
@@ -118,6 +119,7 @@ const FormTask = ({ handleFormSubmit }) => {
             <option>To do</option>
             <option>In progress</option>
             <option>Done</option>
+            <div className="sth"></div>
           </select>
         </span>
       </span>
@@ -137,7 +139,7 @@ const FormTask = ({ handleFormSubmit }) => {
           className="new-task__input-comment"
         />
       </span>
-      <button className="new-task__button-cancel" type="submit">
+      <button onClick={CancelAddTaskOpen} className="new-task__button-cancel" type="button">
         Cancel
       </button>
       <button className="new-task__button-save" type="submit">

@@ -8,6 +8,15 @@ import SimpleTask from "./components/SimpleTask";
 
 const App = () => {
   const [tasksList, setTasksList] = useState([]);
+  const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
+
+  const handleAddTaskOpen = () => {
+    setIsAddTaskOpen(true);
+  };
+
+  const handleCancelAddTaskOpen = () => {
+    setIsAddTaskOpen(false);
+  };
 
   const handleFormSubmit = (
     event,
@@ -38,8 +47,13 @@ const App = () => {
     <>
       <div className="header">
         <Navigation />
-        <FormTask handleFormSubmit={handleFormSubmit} />
-        <Main />
+        {isAddTaskOpen && (
+          <FormTask
+            handleFormSubmit={handleFormSubmit}
+            CancelAddTaskOpen={handleCancelAddTaskOpen}
+          />
+        )}
+        <Main addTaskOpen={handleAddTaskOpen} />
       </div>
       {tasksList.map((task) => {
         return (
