@@ -37,7 +37,8 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen}) => {
   };
 
   return (
-    <form onSubmit={onFormSubmit} className="new-task__container-add ">
+    <div className="add-task_overlay">
+      <form onSubmit={onFormSubmit} className="new-task__container-add ">
       <span className="new-task__element-title">
         <label
           className="new-task__label-title"
@@ -139,13 +140,14 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen}) => {
           className="new-task__input-comment"
         />
       </span>
-      <button onClick={CancelAddTaskOpen} className="new-task__button-cancel" type="button">
+      <button onClick={CancelAddTaskOpen} className="new-task__button-cancel" type="submit">
         Cancel
       </button>
       <button className="new-task__button-save" type="submit">
         Save
       </button>
     </form>
+    </div>
   );
 };
 

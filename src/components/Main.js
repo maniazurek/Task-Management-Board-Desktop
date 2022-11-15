@@ -5,10 +5,11 @@ import DoneSection from "./DoneSection";
 import InProgressSection from "./InProgressSection";
 import ToDoSection from "./ToDoSection";
 
-const Main = ({ addTaskOpen }) => {
+const Main = ({addTaskOpen, openMobileNav}) => {
   
   return (
     <div className="main-content">
+      <div onClick={openMobileNav} className="hamburger-open"></div>
       <ToDoSection />
       <InProgressSection />
       <DoneSection />

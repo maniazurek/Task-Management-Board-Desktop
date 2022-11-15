@@ -9,6 +9,7 @@ import SimpleTask from "./components/SimpleTask";
 const App = () => {
   const [tasksList, setTasksList] = useState([]);
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const handleAddTaskOpen = () => {
     setIsAddTaskOpen(true);
@@ -16,6 +17,10 @@ const App = () => {
 
   const handleCancelAddTaskOpen = () => {
     setIsAddTaskOpen(false);
+  };
+
+  const handleIsMobileNavOpen = () => {
+    setIsMobileNavOpen(true);
   };
 
   const handleFormSubmit = (
@@ -53,7 +58,10 @@ const App = () => {
             CancelAddTaskOpen={handleCancelAddTaskOpen}
           />
         )}
-        <Main addTaskOpen={handleAddTaskOpen} />
+        <Main
+          addTaskOpen={handleAddTaskOpen}
+          openMobileNav={handleIsMobileNavOpen}
+        />
       </div>
       {tasksList.map((task) => {
         return (
