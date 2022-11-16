@@ -154,11 +154,15 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen }) => {
             className="new-task__input-comment"
           />
           <div className="new-task__comments">
-          <ul className="new-task__list">
-            {comments.map((newComment) => {
-              return <li className="new-task__list-element" key={uniqid}>{newComment}</li>;
-            })}
-          </ul>
+            <ul className="new-task__list">
+              {comments.map((newComment) => {
+                return (
+                  <li className="new-task__list-element" key={uniqid}>
+                    {newComment}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </span>
         <button

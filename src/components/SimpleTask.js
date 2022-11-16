@@ -1,20 +1,13 @@
 import React from "react";
 import uniqid from "uniqid";
-import { compareAsc, format } from 'date-fns'
+import { compareAsc, format } from "date-fns";
 
 import dotImage from "../assets/dot.png";
 import linkImage from "../assets/link.png";
 import commentsImage from "../assets/comments.png";
 
-const SimpleTask = ({
-  title,
-  assignee,
-  description,
-  link,
-  tags,
-  comments,
-}) => {
-  const formatDate = format(new Date(), 'do MMM')
+const SimpleTask = ({ title, assignee, description, link, tags, comments }) => {
+  const formatDate = format(new Date(), "do MMM");
 
   return (
     <article className="simple-task__container" key={uniqid()}>

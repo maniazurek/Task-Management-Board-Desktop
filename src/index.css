@@ -535,12 +535,20 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 1;
   }
 
-  .navigation-overlay {
+  .navigation-overlay_closed {
     background: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
   }
 
   .hamburger-open {
@@ -553,6 +561,8 @@ body {
     right: 9px;
     display: inline;
     border: none;
+    z-index: 2;
+    background-color: transparent;
   }
 
   .new-task__container-add {

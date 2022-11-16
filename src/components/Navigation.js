@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navigation = ({ isMobileNavOpen, closeMobileNav }) => {
+const Navigation = ({ isMobileNavOpen, handleMobileNavClose }) => {
   return (
     <>
       <nav
@@ -38,7 +38,10 @@ const Navigation = ({ isMobileNavOpen, closeMobileNav }) => {
           </li>
         </ul>
       </nav>
-      <div onClick={closeMobileNav} className={`"navigation-overlay" ${!isMobileNavOpen && "navigation-overlay_closed"}`}></div>
+      <div
+        onClick={handleMobileNavClose}
+        className="navigation-overlay_closed"
+      ></div>
     </>
   );
 };
