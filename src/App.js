@@ -21,6 +21,10 @@ const App = () => {
     setIsMobileNavOpen(true);
   };
 
+  const handleIsMobileNavClose = () => {
+    setIsMobileNavOpen(false);
+  };
+
   const handleFormSubmit = (
     event,
     title,
@@ -50,7 +54,7 @@ const App = () => {
   return (
     <>
       <div className="header">
-        <Navigation />
+        <Navigation isMobileNavOpen={isMobileNavOpen} closeMobileNav={handleIsMobileNavClose} />
         {isAddTaskOpen && (
           <FormTask
             handleFormSubmit={handleFormSubmit}

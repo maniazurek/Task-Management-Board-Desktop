@@ -39,6 +39,10 @@ body {
   gap: 36px;
 }
 
+.main-content__section {
+  overflow-y: auto;
+}
+
 .main-content__section-title {
   margin: 0;
   font-weight: 700;
@@ -48,6 +52,7 @@ body {
   text-transform: uppercase;
   color: #667085;
   margin-bottom: 32px;
+  font-family: "Karla", sans-serif;
 }
 
 .main-content__add-task {
@@ -118,6 +123,7 @@ body {
   line-height: 19px;
   letter-spacing: -0.03em;
   color: #667085;
+  font-family: "Karla", sans-serif;
 }
 
 .side-nav__source-img {
@@ -175,16 +181,16 @@ body {
   line-height: 15px;
   letter-spacing: -0.0075em;
   color: #344054;
+  font-family: "Karla", sans-serif;
 }
 
 .new-task__container-add {
   position: absolute;
   width: 602px;
+  height: 494px;
   background-color: #fcfcfd;
   padding: 70px 70px 20px 70px;
   border-radius: 8px;
-  top: 20%;
-  left: 24%;
 }
 
 .new-task__element-title,
@@ -193,6 +199,21 @@ body {
 .new-task__element-comment {
   display: flex;
   flex-direction: column;
+}
+
+.new-task__list {
+  padding-left: 13px;
+  margin-top: 13px;
+  margin-bottom: 0;
+}
+
+.new-task__list-element {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  color: #98a2b3;
+  font-family: "Karla", sans-serif;
 }
 
 .new-task__label-title,
@@ -208,6 +229,7 @@ body {
   line-height: 150%;
   letter-spacing: -0.02em;
   color: #71757b;
+  font-family: "Karla", sans-serif;
 }
 
 .new-task__input-title {
@@ -220,6 +242,7 @@ body {
   padding: 0;
   outline: none;
   background-color: #fcfcfd;
+  font-family: "Karla", sans-serif;
 }
 
 .new-task__label-description,
@@ -231,6 +254,11 @@ body {
 .new-task__label-comment {
   margin-top: 10px;
   margin-bottom: 0;
+}
+
+.new-task__date-assigne {
+  display: flex;
+  gap: 20px;
 }
 
 .new-task__label-assignee,
@@ -249,11 +277,11 @@ body {
   outline: none;
   padding: 0;
   background-color: #fcfcfd;
+  font-family: "Karla", sans-serif;
 }
 
 .new-task__input-comment {
   margin-top: 5px;
-  margin-bottom: 165px;
 }
 
 .new-task__input-link,
@@ -268,6 +296,11 @@ body {
   outline: none;
   padding: 0;
   background-color: #fcfcfd;
+  font-family: "Karla", sans-serif;
+}
+
+.rti--input {
+  width: 100%;
 }
 
 .rti--container {
@@ -292,6 +325,7 @@ body {
   font-size: 20px;
   line-height: 23px;
   letter-spacing: -0.02em;
+  font-family: "Karla", sans-serif;
   color: #1d2939;
   border: 1px solid #c9d2e1;
   border-radius: 8px;
@@ -328,6 +362,7 @@ body {
 
 .new-task__select-column {
   text-transform: uppercase;
+  background-color: #c9d2e1;
 }
 
 .react-datepicker__input-container input[type="text" i] {
@@ -346,8 +381,11 @@ body {
   box-shadow: 0px 0.5px 2px rgba(16, 24, 40, 0.3);
   margin: auto;
   padding: 20px;
-  margin-bottom: 24px;
-  margin-top: 20px;
+  margin-top: 24px;
+}
+
+.main-content__section .simple-task__container:first-of-type {
+  margin-top: 32px;
 }
 
 .simple-task__title {
@@ -355,6 +393,7 @@ body {
   font-size: 20px;
   line-height: 150%;
   letter-spacing: -0.02em;
+  font-family: "Karla", sans-serif;
   color: #1d2939;
   margin: 0;
 }
@@ -375,6 +414,7 @@ body {
   font-size: 15px;
   line-height: 150%;
   letter-spacing: -0.02em;
+  font-family: "Karla", sans-serif;
   color: #98a2b3;
   margin-top: 16px;
   margin-bottom: 0;
@@ -396,6 +436,7 @@ body {
   font-size: 15px;
   line-height: 18px;
   letter-spacing: -0.02em;
+  font-family: "Karla", sans-serif;
   color: #98a2b3;
   margin: 0;
 }
@@ -411,6 +452,7 @@ body {
   font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.02em;
+  font-family: "Karla", sans-serif;
   color: #98a2b3;
   margin: 0;
 }
@@ -453,6 +495,7 @@ body {
   font-size: 15px;
   line-height: 18px;
   letter-spacing: -0.02em;
+  font-family: "Karla", sans-serif;
   color: #98a2b3;
   margin: 0;
 }
@@ -468,6 +511,9 @@ body {
   bottom: 0;
   position: absolute;
   background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media all and (max-width: 768px) {
@@ -480,9 +526,22 @@ body {
     position: relative;
   }
 
-  /* .side-nav__hidden {
-    display: none;
-  } */
+  .side-nav {
+    z-index: 1;
+  }
+
+  .navigation-overlay {
+    background: rgba(0, 0, 0, 0.35);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .navigation-overlay {
+    background: rgba(0, 0, 0, 0);
+  }
 
   .hamburger-open {
     background-image: url(./assets/hamburger-open.svg);
@@ -493,6 +552,7 @@ body {
     top: 20px;
     right: 9px;
     display: inline;
+    border: none;
   }
 
   .new-task__container-add {
@@ -504,6 +564,7 @@ body {
     z-index: 1;
     width: 100%;
     padding: 30px;
+    height: 106vh;
   }
 
   .new-task__date-assigne {
@@ -523,6 +584,7 @@ body {
   .new-task__container-choose {
     display: flex;
     flex-wrap: wrap;
+    gap: 0;
   }
 
   .new-task__button-save {

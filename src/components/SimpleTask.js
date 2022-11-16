@@ -1,6 +1,6 @@
 import React from "react";
 import uniqid from "uniqid";
-import Moment from "moment";
+import { compareAsc, format } from 'date-fns'
 
 import dotImage from "../assets/dot.png";
 import linkImage from "../assets/link.png";
@@ -8,14 +8,13 @@ import commentsImage from "../assets/comments.png";
 
 const SimpleTask = ({
   title,
-  date,
   assignee,
   description,
   link,
   tags,
   comments,
 }) => {
-  const formatDate = Moment().format("Do MMM");
+  const formatDate = format(new Date(), 'do MMM')
 
   return (
     <article className="simple-task__container" key={uniqid()}>

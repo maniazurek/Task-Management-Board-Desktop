@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import arrowImage from "../assets/arrow.svg";
 import uniqid from "uniqid";
 
 const FormTask = ({ handleFormSubmit, CancelAddTaskOpen }) => {
@@ -132,9 +131,9 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen }) => {
               onChange={(event) => setColumns(event.target.value)}
               className="new-task__select-column"
             >
-              <option>To do</option>
-              <option>In progress</option>
-              <option>Done</option>
+              <option hidden>To do</option>
+              <option hidden>In progress</option>
+              <option hidden>Done</option>
             </select>
           </span>
         </span>
@@ -146,13 +145,6 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen }) => {
           >
             Comments
           </div>
-          <ul>
-            {comments.map((newComment) => {
-              return (
-                <li key={uniqid}>{newComment}</li>
-              )
-            })}
-          </ul>
           <input
             type="text"
             placeholder="Add comment..."
@@ -161,6 +153,13 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen }) => {
             onChange={(event) => setSingleComment(event.target.value)}
             className="new-task__input-comment"
           />
+          <div className="new-task__comments">
+          <ul className="new-task__list">
+            {comments.map((newComment) => {
+              return <li className="new-task__list-element" key={uniqid}>{newComment}</li>;
+            })}
+          </ul>
+          </div>
         </span>
         <button
           onClick={CancelAddTaskOpen}
