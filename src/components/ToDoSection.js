@@ -3,11 +3,11 @@ import uniqid from "uniqid";
 
 import SimpleTask from "./SimpleTask";
 
-const ToDoSection = ({tasksList}) => {
+const ToDoSection = ({tasksList, columnName}) => {
   return (
     <>
       <section className="main-content__section">
-        <h2 className="main-content__section-title">To do</h2>
+        <h2 className="main-content__section-title">{columnName}</h2>
         {tasksList.map((task) => {
         return (
           <SimpleTask
