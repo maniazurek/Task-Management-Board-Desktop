@@ -1,10 +1,10 @@
 import React from "react";
 import uniqid from "uniqid";
-import Moment from 'moment';
+import Moment from "moment";
 
 import dotImage from "../assets/dot.png";
 import linkImage from "../assets/link.png";
-import commentsImage from "../assets/comments.png"
+import commentsImage from "../assets/comments.png";
 
 const SimpleTask = ({
   title,
@@ -25,13 +25,25 @@ const SimpleTask = ({
         <img className="simple-task__dot-img" src={dotImage} />
         <span className="simple-task__assignee-details">
           <p className="simple-task__assignee-to">Assigned to</p>
-          <p className="simple-task__assignee-who">{assignee}</p>
+          {assignee.length < 16 ? (
+            <p className="simple-task__assignee-who">{assignee}</p>
+          ) : (
+            <p className="simple-task__assignee-who">
+              {assignee.substring(15, 0) + "..."}
+            </p>
+          )}
         </span>
       </span>
       <p className="simple-task__description">{description}</p>
       <span className="simple-task__link-details">
         <img className="simple-task__link-img" src={linkImage} />
-        <p className="simple-task__link-desc">{link}</p>
+        {link.length < 13 ? (
+          <p className="simple-task__link-desc">{link}</p>
+        ) : (
+          <p className="simple-task__link-desc">
+            {link.substring(0, 13) + "..."}
+          </p>
+        )}
       </span>
       <ul className="simple-task__tags-list">
         {tags.map((tag) => {
@@ -43,7 +55,7 @@ const SimpleTask = ({
         })}
       </ul>
       <span className="simple-task__comments-details">
-        <img className="simple-task__comments-img" src={commentsImage}/>
+        <img className="simple-task__comments-img" src={commentsImage} />
         <p className="simple-task__comments-desc">{comments.length}</p>
       </span>
     </article>
