@@ -44,7 +44,7 @@ const SimpleTask = ({
       </ul>
       <span className="simple-task__comments-details">
         <img className="simple-task__comments-img" src={commentsImage}/>
-        <p className="simple-task__comments-desc">{comments}</p>
+        <p className="simple-task__comments-desc">{comments.length}</p>
       </span>
     </article>
   );
