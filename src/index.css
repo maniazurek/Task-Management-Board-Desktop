@@ -530,7 +530,7 @@ body {
     z-index: 1;
   }
 
-  .navigation-overlay {
+  /* .navigation-overlay {
     background: rgba(0, 0, 0, 0.35);
     position: absolute;
     top: 0;
@@ -549,7 +549,7 @@ body {
     left: 0;
     right: 0;
     z-index: 1;
-  }
+  } */
 
   .hamburger-open {
     background-image: url(./assets/hamburger-open.svg);

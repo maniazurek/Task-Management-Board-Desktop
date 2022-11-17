@@ -5,7 +5,6 @@ const Navigation = ({ isMobileNavOpen, handleMobileNavClose }) => {
     <>
       <nav
         className="side-nav"
-        style={{ left: isMobileNavOpen ? "0" : "-65%" }}
       >
         <ul className="side-nav__list">
           <li className="side-nav__list-element">
