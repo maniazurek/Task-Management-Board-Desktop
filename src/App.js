@@ -34,8 +34,9 @@ const App = () => {
     setIsAddTaskOpen(true);
   };
 
-  const handleFormSubmit = (
+  const handleFormAdd = (
     event,
+    id,
     title,
     date,
     assignee,
@@ -46,7 +47,7 @@ const App = () => {
     comments
   ) => {
     const newTask = {
-      id: uniqid(),
+      id,
       title,
       date,
       assignee,
@@ -69,6 +70,8 @@ const App = () => {
   console.log(mode, selectedTask, isAddTaskOpen);
 
   const handleTaskEdit = (
+    event,
+    id,
     title,
     date,
     assignee,
@@ -78,7 +81,9 @@ const App = () => {
     columns,
     comments
   ) => {
+    event.preventDefault();
     const editedTask = {
+      id,
       title,
       date,
       assignee,
@@ -88,7 +93,6 @@ const App = () => {
       columns,
       comments,
     };
-
     const editedTaskList = tasksList.map((taskPost) => {
       if (taskPost.id === editedTask.id) {
         return editedTask;
@@ -96,8 +100,8 @@ const App = () => {
         return taskPost;
       }
     });
-
     setTasksList(editedTaskList);
+    handleCancelAddTaskOpen();
   };
 
   return (
@@ -110,9 +114,7 @@ const App = () => {
         {isAddTaskOpen && (
           <FormTask
             mode={mode}
-            handleFormSubmit={
-              mode === "add" ? handleFormSubmit : handleTaskEdit
-            }
+            handleFormSubmit={mode === "add" ? handleFormAdd : handleTaskEdit}
             CancelAddTaskOpen={handleCancelAddTaskOpen}
             taskToEdit={selectedTask}
           />

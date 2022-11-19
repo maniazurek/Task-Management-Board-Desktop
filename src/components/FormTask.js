@@ -5,20 +5,35 @@ import uniqid from "uniqid";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const FormTask = ({ handleFormSubmit, CancelAddTaskOpen, mode, taskToEdit }) => {
+const FormTask = ({
+  handleFormSubmit,
+  CancelAddTaskOpen,
+  mode,
+  taskToEdit,
+}) => {
   const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
   const [date, setDate] = useState(mode === "add" ? "" : taskToEdit.date);
-  const [assignee, setAssignee] = useState(mode === "add" ? "" : taskToEdit.assignee);
-  const [description, setDescription] = useState(mode === "add" ? "" : taskToEdit.description);
+  const [assignee, setAssignee] = useState(
+    mode === "add" ? "" : taskToEdit.assignee
+  );
+  const [description, setDescription] = useState(
+    mode === "add" ? "" : taskToEdit.description
+  );
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
   const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
-  const [columns, setColumns] = useState(mode === "add" ? "" : taskToEdit.columns);
-  const [comments, setComments] = useState(mode === "add" ? [] : taskToEdit.comments);
+  const [columns, setColumns] = useState(
+    mode === "add" ? "" : taskToEdit.columns
+  );
+  const [comments, setComments] = useState(
+    mode === "add" ? [] : taskToEdit.comments
+  );
   const [newComment, setNewComment] = useState("");
 
   const onFormSubmit = (event) => {
+    const id = mode === "add" ? uniqid() : taskToEdit.id;
     handleFormSubmit(
       event,
+      id,
       title,
       date,
       assignee,
@@ -35,7 +50,7 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen, mode, taskToEdit }) => 
     setLink("");
     setTags([]);
     setColumns("");
-    setComments("");
+    setComments([]);
   };
 
   const addComment = (event) => {
@@ -45,6 +60,8 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen, mode, taskToEdit }) => 
       setNewComment("");
     }
   };
+
+  console.log(comments);
 
   return (
     <div className="add-task_overlay">
@@ -151,12 +168,12 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen, mode, taskToEdit }) => 
             placeholder="Add comment..."
             onKeyPress={addComment}
             value={newComment}
-            onChange={comments => setNewComment(comments.target.value)}
+            onChange={(comments) => setNewComment(comments.target.value)}
             className="new-task__input-comment"
           />
           <div className="new-task__comments">
             <ul className="new-task__list">
-              {comments.map(newComment => {
+              {comments.map((newComment) => {
                 return (
                   <li className="new-task__list-element" key={uniqid()}>
                     {newComment}
