@@ -22,7 +22,7 @@ const FormTask = ({
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
   const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
   const [columns, setColumns] = useState(
-    mode === "add" ? "" : taskToEdit.columns
+    mode === "add" ? "to do" : taskToEdit.columns
   );
   const [comments, setComments] = useState(
     mode === "add" ? [] : taskToEdit.comments
@@ -147,11 +147,13 @@ const FormTask = ({
             <select
               value={columns}
               onChange={(event) => setColumns(event.target.value)}
-              className="new-task__select-column"
+              name="columns"
+              id="columns"
+              className={mode === "add" ? "new-task__select-column" : "new-task__select-column__select-hidden"}
             >
-              <option hidden>To do</option>
-              <option hidden>In progress</option>
-              <option hidden>Done</option>
+              <option value="to do" hidden={mode === "add" ? true : false}>To do</option>
+              <option value="in progress" hidden={mode === "add" ? true : false}>In progress</option>
+              <option value="done" hidden={mode === "add" ? true : false}>Done</option>
             </select>
           </span>
         </span>
