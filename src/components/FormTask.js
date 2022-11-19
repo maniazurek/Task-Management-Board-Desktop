@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import uniqid from "uniqid";
 
-const FormTask = ({ handleFormSubmit, CancelAddTaskOpen }) => {
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState();
-  const [assignee, setAssignee] = useState("");
-  const [description, setDescription] = useState("");
-  const [link, setLink] = useState("");
-  const [tags, setTags] = useState([]);
-  const [columns, setColumns] = useState("");
-  const [comments, setComments] = useState([]);
-  const [singleComment, setSingleComment] = useState("");
+import "react-datepicker/dist/react-datepicker.css";
+
+const FormTask = ({ handleFormSubmit, CancelAddTaskOpen, mode, taskToEdit }) => {
+  const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
+  const [date, setDate] = useState(mode === "add" ? "" : taskToEdit.date);
+  const [assignee, setAssignee] = useState(mode === "add" ? "" : taskToEdit.assignee);
+  const [description, setDescription] = useState(mode === "add" ? "" : taskToEdit.description);
+  const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
+  const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
+  const [columns, setColumns] = useState(mode === "add" ? "" : taskToEdit.columns);
+  const [comments, setComments] = useState(mode === "add" ? [] : taskToEdit.comments);
+  const [newComment, setNewComment] = useState("");
 
   const onFormSubmit = (event) => {
     handleFormSubmit(
@@ -40,8 +41,8 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen }) => {
   const addComment = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      setComments([...comments, singleComment]);
-      setSingleComment("");
+      setComments([...comments, newComment]);
+      setNewComment("");
     }
   };
 
@@ -148,16 +149,16 @@ const FormTask = ({ handleFormSubmit, CancelAddTaskOpen }) => {
           <input
             type="text"
             placeholder="Add comment..."
-            value={singleComment}
             onKeyPress={addComment}
-            onChange={(event) => setSingleComment(event.target.value)}
+            value={newComment}
+            onChange={comments => setNewComment(comments.target.value)}
             className="new-task__input-comment"
           />
           <div className="new-task__comments">
             <ul className="new-task__list">
-              {comments.map((newComment) => {
+              {comments.map(newComment => {
                 return (
-                  <li className="new-task__list-element" key={uniqid}>
+                  <li className="new-task__list-element" key={uniqid()}>
                     {newComment}
                   </li>
                 );

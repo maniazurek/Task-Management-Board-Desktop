@@ -3,7 +3,7 @@ import uniqid from "uniqid";
 
 import SimpleTask from "./SimpleTask";
 
-const ToDoSection = ({ tasksList, columnName }) => {
+const ToDoSection = ({ tasksList, columnName, onTaskSelect }) => {
   return (
     <>
       <section className="main-content__section">
@@ -11,15 +11,17 @@ const ToDoSection = ({ tasksList, columnName }) => {
         {tasksList.map((task) => {
           return (
             <SimpleTask
-              key={uniqid()}
-              title={task.title}
-              description={task.description}
-              link={task.link}
-              tags={task.tags}
-              date={task.date}
-              assignee={task.assignee}
-              columns={task.columns}
-              comments={task.comments}
+              key={task.id}
+              task={task}
+              // title={task.title}
+              // description={task.description}
+              // link={task.link}
+              // tags={task.tags}
+              // date={task.date}
+              // assignee={task.assignee}
+              // columns={task.columns}
+              // comments={task.comments}
+              onTaskSelect={onTaskSelect}
             />
           );
         })}

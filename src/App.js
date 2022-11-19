@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import uniqid from "uniqid";
 
 import Main from "./components/Main";
 import Navigation from "./components/Navigation";
@@ -8,6 +9,8 @@ const App = () => {
   const [tasksList, setTasksList] = useState([]);
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [mode, setMode] = useState("add");
+  const [selectedTask, setSelectedTask] = useState(null);
 
   const handleAddTaskOpen = () => {
     setIsAddTaskOpen(true);
@@ -25,6 +28,12 @@ const App = () => {
     setIsMobileNavOpen(false);
   };
 
+  const handleTaskAdd = () => {
+    setMode("add");
+    setSelectedTask(null);
+    setIsAddTaskOpen(true);
+  };
+
   const handleFormSubmit = (
     event,
     title,
@@ -36,8 +45,8 @@ const App = () => {
     columns,
     comments
   ) => {
-    event.preventDefault();
     const newTask = {
+      id: uniqid(),
       title,
       date,
       assignee,
@@ -51,6 +60,46 @@ const App = () => {
     handleCancelAddTaskOpen();
   };
 
+  const handleTaskSelect = (clickedTask) => {
+    setMode("edit");
+    setSelectedTask(clickedTask);
+    setIsAddTaskOpen(true);
+  };
+
+  console.log(mode, selectedTask, isAddTaskOpen);
+
+  const handleTaskEdit = (
+    title,
+    date,
+    assignee,
+    description,
+    link,
+    tags,
+    columns,
+    comments
+  ) => {
+    const editedTask = {
+      title,
+      date,
+      assignee,
+      description,
+      link,
+      tags,
+      columns,
+      comments,
+    };
+
+    const editedTaskList = tasksList.map((taskPost) => {
+      if (taskPost.id === editedTask.id) {
+        return editedTask;
+      } else {
+        return taskPost;
+      }
+    });
+
+    setTasksList(editedTaskList);
+  };
+
   return (
     <>
       <div className="header">
@@ -60,14 +109,19 @@ const App = () => {
         />
         {isAddTaskOpen && (
           <FormTask
-            handleFormSubmit={handleFormSubmit}
+            mode={mode}
+            handleFormSubmit={
+              mode === "add" ? handleFormSubmit : handleTaskEdit
+            }
             CancelAddTaskOpen={handleCancelAddTaskOpen}
+            taskToEdit={selectedTask}
           />
         )}
         <Main
-          addTaskOpen={handleAddTaskOpen}
+          addTaskOpen={handleTaskAdd}
           openMobileNav={handleIsMobileNavOpen}
           tasksList={tasksList}
+          onTaskSelect={handleTaskSelect}
         />
       </div>
     </>
