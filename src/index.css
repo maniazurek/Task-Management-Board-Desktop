@@ -382,6 +382,7 @@ body {
   margin: auto;
   padding: 20px;
   margin-top: 24px;
+  cursor: pointer;
 }
 
 .main-content__section .simple-task__container:first-of-type {
