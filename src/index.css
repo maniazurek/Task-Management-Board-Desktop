@@ -365,6 +365,21 @@ body {
   background-color: #c9d2e1;
 }
 
+.new-task__select-column__select-hidden {
+  background: #ffffff;
+  border: 1px solid #c9d2e1;
+  border-radius: 8px;
+  padding: 8px;
+  color: #98a2b3;
+  width: 140px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url(./assets/arrow.svg);
+  background-position: 116px 8px;
+  background-repeat: no-repeat;
+  text-transform: uppercase;
+}
+
 .react-datepicker__input-container input[type="text" i] {
   background: #ffffff;
   border: 1px solid #c9d2e1;
