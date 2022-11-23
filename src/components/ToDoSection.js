@@ -10,7 +10,7 @@ const ToDoSection = ({ tasksList, columnName, onTaskSelect }) => {
         {tasksList.map((task) => {
           return (
             <SimpleTask
-              key={task.id}
+              key={task._id}
               task={task}
               onTaskSelect={onTaskSelect}
             />

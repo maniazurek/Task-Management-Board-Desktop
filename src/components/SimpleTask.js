@@ -45,7 +45,7 @@ const SimpleTask = ({ task, onTaskSelect }) => {
       <ul className="simple-task__tags-list">
         {task.tags.map((tag) => {
           return (
-            <li className="simple-task__tags-element" key={uniqid()}>
+            <li className="simple-task__tags-element" key={tag._id}>
               {tag}
             </li>
           );

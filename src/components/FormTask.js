@@ -30,7 +30,7 @@ const FormTask = ({
   const [newComment, setNewComment] = useState("");
 
   const onFormSubmit = (event) => {
-    const id = mode === "add" ? uniqid() : taskToEdit.id;
+    const id = mode === "add" ? uniqid() : taskToEdit._id;
     handleFormSubmit(
       event,
       id,
