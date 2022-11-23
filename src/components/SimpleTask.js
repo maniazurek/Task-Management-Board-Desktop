@@ -7,7 +7,6 @@ import linkImage from "../assets/link.png";
 import commentsImage from "../assets/comments.png";
 
 const SimpleTask = ({ task, onTaskSelect }) => {
-  const formatDate = format(new Date(), "do MMM");
 
   return (
     <article
@@ -17,7 +16,9 @@ const SimpleTask = ({ task, onTaskSelect }) => {
     >
       <h2 className="simple-task__title">{task.title}</h2>
       <span className="simple-task__date-assignee">
-        <p className="simple-task__date">{task.formatDate}</p>
+        <p className="simple-task__date">
+          {format(new Date(task.dueDate), "do MMM")}
+        </p>
         <img className="simple-task__dot-img" src={dotImage} />
         <span className="simple-task__assignee-details">
           <p className="simple-task__assignee-to">Assigned to</p>

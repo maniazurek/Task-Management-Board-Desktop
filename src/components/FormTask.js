@@ -12,7 +12,7 @@ const FormTask = ({
   taskToEdit,
 }) => {
   const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
-  const [date, setDate] = useState(mode === "add" ? "" : taskToEdit.date);
+  const [dueDate, setDueDate] = useState(mode === "add" ? "" : taskToEdit.dueDate);
   const [assignee, setAssignee] = useState(
     mode === "add" ? "" : taskToEdit.assignee
   );
@@ -21,8 +21,8 @@ const FormTask = ({
   );
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
   const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
-  const [columns, setColumns] = useState(
-    mode === "add" ? "to do" : taskToEdit.columns
+  const [column, setColumn] = useState(
+    mode === "add" ? "to do" : taskToEdit.column
   );
   const [comments, setComments] = useState(
     mode === "add" ? [] : taskToEdit.comments
@@ -35,21 +35,21 @@ const FormTask = ({
       event,
       id,
       title,
-      date,
+      dueDate,
       assignee,
       description,
       link,
       tags,
-      columns,
+      column,
       comments
     );
     setTitle("");
-    setDate();
+    setDueDate();
     setAssignee("");
     setDescription("");
     setLink("");
     setTags([]);
-    setColumns("");
+    setColumn("");
     setComments([]);
   };
 
@@ -120,8 +120,8 @@ const FormTask = ({
             <span className="new-task__element-date">
               <p className="new-task__label-date">Due date</p>
               <DatePicker
-                selected={date}
-                onChange={(newDate) => setDate(newDate)}
+                selected={dueDate}
+                onChange={(date) => setDueDate(date)}
               />
             </span>
             <span className="new-task__element-assignee">
@@ -145,10 +145,10 @@ const FormTask = ({
           <span className="new-task__element-column">
             <p className="new-task__label-column">Column</p>
             <select
-              value={columns}
-              onChange={(event) => setColumns(event.target.value)}
-              name="columns"
-              id="columns"
+              value={column}
+              onChange={(event) => setColumn(event.target.value)}
+              name="column"
+              id="column"
               className={mode === "add" ? "new-task__select-column" : "new-task__select-column__select-hidden"}
             >
               <option value="to do" hidden={mode === "add" ? true : false}>To do</option>

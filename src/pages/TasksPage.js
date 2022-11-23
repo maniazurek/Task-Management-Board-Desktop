@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Main from "../components/Main";
 import FormTask from "../components/FormTask";
@@ -8,6 +8,16 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
+
+  const URL = "https://todo-api-mwy8.onrender.com";
+
+  useEffect(() => {
+    fetch(`${URL}/tasks`)
+      .then((res) => res.json())
+      .then((data) => setTasksList(data.records));
+  }, []);
+
+  console.log(tasksList);
 
   const handleCancelAddTaskOpen = () => {
     setIsAddTaskOpen(false);
@@ -23,27 +33,47 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
     event,
     id,
     title,
-    date,
+    dueDate,
     assignee,
     description,
     link,
     tags,
-    columns,
+    column,
     comments
   ) => {
-    const newTask = {
-      id,
-      title,
-      date,
-      assignee,
-      description,
-      link,
-      tags,
-      columns,
-      comments,
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        dueDate,
+        assignee,
+        description,
+        link,
+        tags: [],
+        column,
+        comments: [],
+      }),
     };
-    setTasksList([...tasksList, newTask]);
-    handleCancelAddTaskOpen();
+    fetch(`${URL}/tasks`, options)
+      .then((res) => res.json())
+      .then((data) => setTasksList([...tasksList, data.records]));
+
+    // const newTask = {
+    //   id,
+    //   title,
+    //   dueDate,
+    //   assignee,
+    //   description,
+    //   link,
+    //   tags,
+    //   column,
+    //   comments,
+    // };
+    // setTasksList([...tasksList, newTask]);
+    // handleCancelAddTaskOpen();
   };
 
   const handleTaskSelect = (clickedTask) => {
@@ -52,30 +82,28 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
     setIsAddTaskOpen(true);
   };
 
-  console.log(mode, selectedTask, isAddTaskOpen);
-
   const handleTaskEdit = (
     event,
     id,
     title,
-    date,
+    dueDate,
     assignee,
     description,
     link,
     tags,
-    columns,
+    column,
     comments
   ) => {
     event.preventDefault();
     const editedTask = {
       id,
       title,
-      date,
+      dueDate,
       assignee,
       description,
       link,
       tags,
-      columns,
+      column,
       comments,
     };
     const editedTaskList = tasksList.map((taskPost) => {
