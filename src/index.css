@@ -526,6 +526,10 @@ body {
   align-items: center;
 }
 
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
 @media all and (max-width: 768px) {
   .main-content {
     margin: 0;
