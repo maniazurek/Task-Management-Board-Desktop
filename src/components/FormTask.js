@@ -10,11 +10,15 @@ const FormTask = ({
   CancelAddTaskOpen,
   mode,
   taskToEdit,
+  userList,
+  columnList,
 }) => {
   const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
-  const [dueDate, setDueDate] = useState(mode === "add" ? "" : taskToEdit.dueDate);
+  const [dueDate, setDueDate] = useState(
+    mode === "add" ? "" : taskToEdit.dueDate
+  );
   const [assignee, setAssignee] = useState(
-    mode === "add" ? "" : taskToEdit.assignee
+    mode === "add" ? "" : taskToEdit.assignee._id
   );
   const [description, setDescription] = useState(
     mode === "add" ? "" : taskToEdit.description
@@ -22,7 +26,9 @@ const FormTask = ({
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
   const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
   const [column, setColumn] = useState(
-    mode === "add" ? "to do" : taskToEdit.column
+    mode === "add"
+      ? columnList.find((item) => item.name === "to do")._id
+      : taskToEdit.column._id
   );
   const [comments, setComments] = useState(
     mode === "add" ? [] : taskToEdit.comments
@@ -30,10 +36,8 @@ const FormTask = ({
   const [newComment, setNewComment] = useState("");
 
   const onFormSubmit = (event) => {
-    const id = mode === "add" ? uniqid() : taskToEdit._id;
+    event.preventDefault();
     handleFormSubmit(
-      event,
-      id,
       title,
       dueDate,
       assignee,
@@ -43,14 +47,6 @@ const FormTask = ({
       column,
       comments
     );
-    setTitle("");
-    setDueDate();
-    setAssignee("");
-    setDescription("");
-    setLink("");
-    setTags([]);
-    setColumn("");
-    setComments([]);
   };
 
   const addComment = (event) => {
@@ -61,7 +57,7 @@ const FormTask = ({
     }
   };
 
-  console.log(comments);
+  console.log(assignee, column);
 
   return (
     <div className="add-task_overlay">
@@ -134,11 +130,9 @@ const FormTask = ({
                 <option value="" disabled hidden>
                   Choose
                 </option>
-                <option value="Marianna Żurek">Marianna Żurek</option>
-                <option value="Marta Rosa">Marta Rosa</option>
-                <option value="Maksymilian Olszewski">
-                  Maksymilian Olszewski
-                </option>
+                {userList.map((user) => {
+                  return <option value={user._id}>{user.name}</option>;
+                })}
               </select>
             </span>
           </span>
@@ -149,11 +143,15 @@ const FormTask = ({
               onChange={(event) => setColumn(event.target.value)}
               name="column"
               id="column"
-              className={mode === "add" ? "new-task__select-column" : "new-task__select-column__select-hidden"}
+              className={
+                mode === "add"
+                  ? "new-task__select-column"
+                  : "new-task__select-column__select-hidden"
+              }
             >
-              <option value="to do" hidden={mode === "add" ? true : false}>To do</option>
-              <option value="in progress" hidden={mode === "add" ? true : false}>In progress</option>
-              <option value="done" hidden={mode === "add" ? true : false}>Done</option>
+              {columnList.map((column) => {
+                return <option value={column._id}>{column.name}</option>;
+              })}
             </select>
           </span>
         </span>

@@ -7,11 +7,9 @@ import linkImage from "../assets/link.png";
 import commentsImage from "../assets/comments.png";
 
 const SimpleTask = ({ task, onTaskSelect }) => {
-
   return (
     <article
       className="simple-task__container"
-      key={uniqid()}
       onClick={() => onTaskSelect(task)}
     >
       <h2 className="simple-task__title">{task.title}</h2>
@@ -22,11 +20,11 @@ const SimpleTask = ({ task, onTaskSelect }) => {
         <img className="simple-task__dot-img" src={dotImage} />
         <span className="simple-task__assignee-details">
           <p className="simple-task__assignee-to">Assigned to</p>
-          {task.assignee.length < 16 ? (
-            <p className="simple-task__assignee-who">{task.assignee}</p>
+          {task.assignee.name.length < 16 ? (
+            <p className="simple-task__assignee-who">{task.assignee.name}</p>
           ) : (
             <p className="simple-task__assignee-who">
-              {task.assignee.substring(15, 0) + "..."}
+              {task.assignee.name.substring(15, 0) + "..."}
             </p>
           )}
         </span>
@@ -46,7 +44,7 @@ const SimpleTask = ({ task, onTaskSelect }) => {
         {task.tags.map((tag) => {
           return (
             <li className="simple-task__tags-element" key={tag._id}>
-              {tag}
+              {tag.name}
             </li>
           );
         })}

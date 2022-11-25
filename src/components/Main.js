@@ -9,17 +9,19 @@ const Main = ({ addTaskOpen, openMobileNav, tasksList, onTaskSelect }) => {
       <button onClick={openMobileNav} className="hamburger-open"></button>
       <ToDoSection
         columnName="to do"
-        tasksList={tasksList.filter((task) => task.column === "to do")}
+        tasksList={tasksList.filter((task) => task.column.name === "to do")}
         onTaskSelect={onTaskSelect}
       />
       <ToDoSection
         columnName="in progress"
-        tasksList={tasksList.filter((task) => task.column === "in progress")}
+        tasksList={tasksList.filter(
+          (task) => task.column.name === "in progress"
+        )}
         onTaskSelect={onTaskSelect}
       />
       <ToDoSection
         columnName="done"
-        tasksList={tasksList.filter((task) => task.column === "done")}
+        tasksList={tasksList.filter((task) => task.column.name === "done")}
         onTaskSelect={onTaskSelect}
       />
       <button onClick={addTaskOpen} className="main-content__add-task">

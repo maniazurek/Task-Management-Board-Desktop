@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import useFetch from "../hooks/useFetch";
 import Main from "../components/Main";
 import FormTask from "../components/FormTask";
 
@@ -8,6 +9,11 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
+  
+  const [userList, setUserList] = useState([]);
+  const [columnList, setColumnList] = useState([]);
+
+  const { data, error, loading } = useFetch(`${URL}`)
 
   const URL = "https://todo-api-mwy8.onrender.com";
 
@@ -17,7 +23,17 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
       .then((data) => setTasksList(data.records));
   }, []);
 
-  console.log(tasksList);
+  useEffect(() => {
+    fetch(`${URL}/users`)
+      .then((res) => res.json())
+      .then((data) => setUserList(data.records));
+  }, []);
+
+  useEffect(() => {
+    fetch(`${URL}/columns`)
+      .then((res) => res.json())
+      .then((data) => setColumnList(data.records));
+  }, []);
 
   const handleCancelAddTaskOpen = () => {
     setIsAddTaskOpen(false);
@@ -30,8 +46,6 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
   };
 
   const handleFormAdd = (
-    event,
-    id,
     title,
     dueDate,
     assignee,
@@ -41,6 +55,17 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
     column,
     comments
   ) => {
+    console.log(
+      title,
+      dueDate,
+      assignee,
+      description,
+      link,
+      tags,
+      column,
+      comments
+    );
+
     const options = {
       method: "POST",
       headers: {
@@ -52,9 +77,9 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
         assignee,
         description,
         link,
-        tags: [],
+        tags,
         column,
-        comments: [],
+        comments,
       }),
     };
     fetch(`${URL}/tasks`, options)
@@ -131,6 +156,8 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
           handleFormSubmit={mode === "add" ? handleFormAdd : handleTaskEdit}
           CancelAddTaskOpen={handleCancelAddTaskOpen}
           taskToEdit={selectedTask}
+          userList={userList}
+          columnList={columnList}
         />
       )}
     </>
