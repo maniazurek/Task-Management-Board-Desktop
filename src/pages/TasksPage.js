@@ -9,11 +9,9 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
-  
+
   const [userList, setUserList] = useState([]);
   const [columnList, setColumnList] = useState([]);
-
-  const { data, error, loading } = useFetch(`${URL}`)
 
   const URL = "https://todo-api-mwy8.onrender.com";
 
