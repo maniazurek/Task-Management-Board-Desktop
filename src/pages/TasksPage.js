@@ -108,8 +108,6 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
   };
 
   const handleTaskEdit = (
-    event,
-    id,
     title,
     dueDate,
     assignee,
@@ -119,9 +117,45 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
     column,
     comments
   ) => {
-    event.preventDefault();
+    const options = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title,
+        dueDate,
+        assignee,
+        description,
+        link,
+        tags,
+        column,
+        comments,
+      }),
+    };
+    // const editedTask = {
+    //   id,
+    //   title,
+    //   dueDate,
+    //   assignee,
+    //   description,
+    //   link,
+    //   tags,
+    //   column,
+    //   comments,
+    // };
+    fetch(`${URL}/tasks/${selectedTask._id}`, options)
+      .then((res) => res.json())
+      .then((data) => {
+        const editedTaskList = tasksList.map((taskPost) => {
+          if (taskPost._id === data.records._id) {
+            return data.records;
+          } else {
+            return taskPost;
+          }
+        });
+        setTasksList(editedTaskList);
+        handleCancelAddTaskOpen();
+      });
     const editedTask = {
-      id,
       title,
       dueDate,
       assignee,
@@ -132,7 +166,7 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
       comments,
     };
     const editedTaskList = tasksList.map((taskPost) => {
-      if (taskPost.id === editedTask.id) {
+      if (taskPost._id === editedTask._id) {
         return editedTask;
       } else {
         return taskPost;
