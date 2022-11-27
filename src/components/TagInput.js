@@ -40,15 +40,36 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
 
   return (
     <form onSubmit={onFormSubmit} className="new-task__form-tags">
-      <input
-        className="new-task__select-tags"
-        value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
-        onClick={(event) => {
-          setIsSuggestionsOpen(true);
-          event.stopPropagation();
-        }}
-      />
+      <div className="new-task__tags-input_suggestions">
+        <input
+          className="new-task__select-tags"
+          value={inputValue}
+          onChange={(event) => setInputValue(event.target.value)}
+          onClick={(event) => {
+            setIsSuggestionsOpen(true);
+            event.stopPropagation();
+          }}
+        />
+        {isSuggestionsOpen && (
+          <span className="new-task__tags-instruction">
+            Type tag or choose from the list:
+          </span>
+        )}
+
+        <div className="new-task__tags-suggestions">
+          {isSuggestionsOpen &&
+            internalTagsSuggestions.map((tag) => (
+              <span
+                style={{ color: tag.color }}
+                key={tag._id}
+                onClick={() => handleTagAdd(tag._id)}
+                className="new-task__tags-suggestions_element"
+              >
+                {tag.name}
+              </span>
+            ))}
+        </div>
+      </div>
       <div className="new-task__tags-selected">
         {tags.map((tagID) => {
           const currentTag = tagsSuggestions.find(
@@ -65,18 +86,6 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
             </span>
           );
         })}
-      </div>
-      <div className="new-task__tags-suggestions">
-        {isSuggestionsOpen &&
-          internalTagsSuggestions.map((tag) => (
-            <span
-              style={{ color: tag.color }}
-              key={tag._id}
-              onClick={() => handleTagAdd(tag._id)}
-            >
-              {tag.name}
-            </span>
-          ))}
       </div>
     </form>
   );
