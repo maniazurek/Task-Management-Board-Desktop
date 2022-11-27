@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import uniqid from "uniqid";
 
 import "react-datepicker/dist/react-datepicker.css";
+import TagInput from "./TagInput";
 
 const FormTask = ({
   handleFormSubmit,
@@ -12,6 +13,7 @@ const FormTask = ({
   taskToEdit,
   userList,
   columnList,
+  tagsList,
 }) => {
   const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
   const [dueDate, setDueDate] = useState(
@@ -45,7 +47,8 @@ const FormTask = ({
       link,
       tags,
       column,
-      comments
+      comments,
+      tagsSuggestions,
     );
   };
 
@@ -109,7 +112,14 @@ const FormTask = ({
         </span>
         <span className="new-task__element-tags">
           <p className="new-task__label-tags">Tags</p>
-          <TagsInput value={tags} onChange={(newTag) => setTags(newTag)} />
+          {/* <TagsInput value={tags} onChange={(newTag) => setTags(newTag)} /> */}
+          <TagInput
+            tags={tags}
+            onTagAdd={(tag) => setTags([...tags, tag])}
+            onTagRemove={(tagToRemove) =>
+              setTags(tags.filter((tag) => tag !== tagToRemove))
+            } tagsSuggestions={tagsList}
+          />
         </span>
         <span className="new-task__container-choose">
           <span className="new-task__date-assigne">

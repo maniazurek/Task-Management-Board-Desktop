@@ -43,7 +43,11 @@ const SimpleTask = ({ task, onTaskSelect }) => {
       <ul className="simple-task__tags-list">
         {task.tags.map((tag) => {
           return (
-            <li className="simple-task__tags-element" key={tag._id}>
+            <li
+              className="simple-task__tags-element"
+              key={tag._id}
+              style={{ backgroundColor: tag.color }}
+            >
               {tag.name}
             </li>
           );

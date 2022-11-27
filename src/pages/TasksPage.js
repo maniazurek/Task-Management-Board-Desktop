@@ -10,10 +10,12 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
 
+  const URL = "https://todo-api-mwy8.onrender.com";
+
   const [userList, setUserList] = useState([]);
   const [columnList, setColumnList] = useState([]);
 
-  const URL = "https://todo-api-mwy8.onrender.com";
+  // const [tagsList] = useFetch(`${URL}/tags`)
 
   useEffect(() => {
     fetch(`${URL}/tasks`)
@@ -156,6 +158,7 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
           taskToEdit={selectedTask}
           userList={userList}
           columnList={columnList}
+          // tagsList={tagsList}
         />
       )}
     </>
