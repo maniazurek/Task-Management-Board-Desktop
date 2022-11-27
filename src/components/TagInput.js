@@ -39,19 +39,9 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
   };
 
   return (
-    <form onSubmit={onFormSubmit}>
-      {tags.map((tagID) => {
-        const currentTag = tagsSuggestions.find(
-          (tagToShow) => tagToShow._id === tagID
-        );
-        return (
-          <span style={{ backgroundColor: currentTag.color }} key={tagID}>
-            {currentTag.name}
-            <span onClick={() => handleTagRemove(tagID)}>X</span>
-          </span>
-        );
-      })}
+    <form onSubmit={onFormSubmit} className="new-task__form-tags">
       <input
+        className="new-task__select-tags"
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
         onClick={(event) => {
@@ -59,16 +49,35 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
           event.stopPropagation();
         }}
       />
-      {isSuggestionsOpen &&
-        internalTagsSuggestions.map((tag) => (
-          <span
-            style={{ color: tag.color }}
-            key={tag._id}
-            onClick={() => handleTagAdd(tag._id)}
-          >
-            {tag.name}
-          </span>
-        ))}
+      <div className="new-task__tags-selected">
+        {tags.map((tagID) => {
+          const currentTag = tagsSuggestions.find(
+            (tagToShow) => tagToShow._id === tagID
+          );
+          return (
+            <span
+              className="new-task__tag-selected"
+              style={{ backgroundColor: currentTag.color }}
+              key={tagID}
+            >
+              <span onClick={() => handleTagRemove(tagID)}>X </span>
+              {currentTag.name}
+            </span>
+          );
+        })}
+      </div>
+      <div className="new-task__tags-suggestions">
+        {isSuggestionsOpen &&
+          internalTagsSuggestions.map((tag) => (
+            <span
+              style={{ color: tag.color }}
+              key={tag._id}
+              onClick={() => handleTagAdd(tag._id)}
+            >
+              {tag.name}
+            </span>
+          ))}
+      </div>
     </form>
   );
 };

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
 import TasksPage from "./pages/TasksPage";
+import UsersPage from "./pages/UsersPage";
 
 const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -25,6 +26,10 @@ const App = () => {
         <Route
           path="/"
           element={<TasksPage openMobileNav={handleIsMobileNavOpen} />}
+        />
+        <Route
+          path="/users"
+          element={<UsersPage openMobileNav={handleIsMobileNavOpen} />}
         />
       </Routes>
     </BrowserRouter>

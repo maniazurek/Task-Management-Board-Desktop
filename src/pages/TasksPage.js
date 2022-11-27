@@ -14,6 +14,7 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
 
   const [userList, setUserList] = useState([]);
   const [columnList, setColumnList] = useState([]);
+  const [tagsList, setTagsList] = useState([]);
 
   // const [tagsList] = useFetch(`${URL}/tags`)
 
@@ -35,6 +36,12 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
       .then((data) => setColumnList(data.records));
   }, []);
 
+  useEffect(() => {
+    fetch(`${URL}/tags`)
+      .then((res) => res.json())
+      .then((data) => setTagsList(data.records));
+  });
+
   const handleCancelAddTaskOpen = () => {
     setIsAddTaskOpen(false);
   };
@@ -55,17 +62,6 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
     column,
     comments
   ) => {
-    console.log(
-      title,
-      dueDate,
-      assignee,
-      description,
-      link,
-      tags,
-      column,
-      comments
-    );
-
     const options = {
       method: "POST",
       headers: {
@@ -192,7 +188,7 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
           taskToEdit={selectedTask}
           userList={userList}
           columnList={columnList}
-          // tagsList={tagsList}
+          tagsList={tagsList}
         />
       )}
     </>

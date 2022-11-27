@@ -26,7 +26,7 @@ const FormTask = ({
     mode === "add" ? "" : taskToEdit.description
   );
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
-  const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
+  const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags.map((tag) => tag._id));
   const [column, setColumn] = useState(
     mode === "add"
       ? columnList.find((item) => item.name === "to do")._id
