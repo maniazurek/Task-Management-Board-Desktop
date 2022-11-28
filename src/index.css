@@ -605,6 +605,26 @@ a:-webkit-any-link {
   display: flex;
 }
 
+.simple-task__info-img {
+  border-radius: 50%;
+  width: 57px;
+  height: 57px;
+  background-size: cover;
+  background-repeat: round;
+}
+
+.simple-task__container-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.new-user-img {
+  background-size: cover;
+  background-repeat: round;
+}
+
+
+
 @media all and (max-width: 768px) {
   .main-content {
     margin: 0;
