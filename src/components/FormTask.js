@@ -17,7 +17,7 @@ const FormTask = ({
 }) => {
   const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
   const [dueDate, setDueDate] = useState(
-    mode === "add" ? "" : taskToEdit.dueDate
+    mode === "add" ? new Date() : new Date(taskToEdit.dueDate)
   );
   const [assignee, setAssignee] = useState(
     mode === "add" ? "" : taskToEdit.assignee._id
@@ -49,7 +49,7 @@ const FormTask = ({
       link,
       tags,
       column,
-      comments,
+      comments
     );
   };
 
@@ -149,6 +149,7 @@ const FormTask = ({
           <span className="new-task__element-column">
             <p className="new-task__label-column">Column</p>
             <select
+              disabled={mode === "add"}
               value={column}
               onChange={(event) => setColumn(event.target.value)}
               name="column"

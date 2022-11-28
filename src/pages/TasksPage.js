@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import Main from "../components/Main";
 import FormTask from "../components/FormTask";
+import Loading from "../components/Loading";
 
 const TasksPage = ({ handleIsMobileNavOpen }) => {
   const [tasksList, setTasksList] = useState([]);
@@ -12,37 +13,18 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
 
   const URL = "https://todo-api-mwy8.onrender.com";
 
-  // const { data, error, loading } = useFetch(`${URL}/tasks`);
-
-  const [userList, setUserList] = useState([]);
-  const [columnList, setColumnList] = useState([]);
-  const [tagsList, setTagsList] = useState([]);
-
-  // const [tagsList] = useFetch(`${URL}/tags`)
-
-  useEffect(() => {
-    fetch(`${URL}/tasks`)
-      .then((res) => res.json())
-      .then((data) => setTasksList(data.records));
-  }, []);
+  const [tasksData, tasksError, tasksLoading] = useFetch(`${URL}/tasks`);
+  const [usersData, usersError, usersLoading] = useFetch(`${URL}/users`);
+  const [columnsData, columnsError, columnsLoading] = useFetch(
+    `${URL}/columns`
+  );
+  const [tagsData, tagsError, tagsLoading] = useFetch(`${URL}/tags`);
 
   useEffect(() => {
-    fetch(`${URL}/users`)
-      .then((res) => res.json())
-      .then((data) => setUserList(data.records));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${URL}/columns`)
-      .then((res) => res.json())
-      .then((data) => setColumnList(data.records));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${URL}/tags`)
-      .then((res) => res.json())
-      .then((data) => setTagsList(data.records));
-  });
+    if (tasksData.records) {
+      setTasksList(tasksData.records);
+    }
+  }, [tasksData]);
 
   const handleCancelAddTaskOpen = () => {
     setIsAddTaskOpen(false);
@@ -84,20 +66,6 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
       .then((res) => res.json())
       .then((data) => setTasksList([...tasksList, data.records]));
     handleCancelAddTaskOpen();
-
-    // const newTask = {
-    //   id,
-    //   title,
-    //   dueDate,
-    //   assignee,
-    //   description,
-    //   link,
-    //   tags,
-    //   column,
-    //   comments,
-    // };
-    // setTasksList([...tasksList, newTask]);
-    // handleCancelAddTaskOpen();
   };
 
   const handleTaskSelect = (clickedTask) => {
@@ -132,17 +100,6 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
         comments,
       }),
     };
-    // const editedTask = {
-    //   id,
-    //   title,
-    //   dueDate,
-    //   assignee,
-    //   description,
-    //   link,
-    //   tags,
-    //   column,
-    //   comments,
-    // };
     fetch(`${URL}/tasks/${selectedTask._id}`, options)
       .then((res) => res.json())
       .then((data) => {
@@ -156,25 +113,6 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
         setTasksList(editedTaskList);
         handleCancelAddTaskOpen();
       });
-    const editedTask = {
-      title,
-      dueDate,
-      assignee,
-      description,
-      link,
-      tags,
-      column,
-      comments,
-    };
-    const editedTaskList = tasksList.map((taskPost) => {
-      if (taskPost._id === editedTask._id) {
-        return editedTask;
-      } else {
-        return taskPost;
-      }
-    });
-    setTasksList(editedTaskList);
-    handleCancelAddTaskOpen();
   };
 
   return (
@@ -191,9 +129,9 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
           handleFormSubmit={mode === "add" ? handleFormAdd : handleTaskEdit}
           CancelAddTaskOpen={handleCancelAddTaskOpen}
           taskToEdit={selectedTask}
-          userList={userList}
-          columnList={columnList}
-          tagsList={tagsList}
+          userList={usersData.records}
+          columnList={columnsData.records}
+          tagsList={tagsData.records}
         />
       )}
     </>

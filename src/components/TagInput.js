@@ -11,16 +11,20 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
   }, []);
 
   const onFormSubmit = (event) => {
-    event.preventDefault();
-    const matchingTag = tagsSuggestions.find((tag) => tag.name === inputValue);
-    const existingTag = tags.find((tag) => tag === matchingTag._id);
-    if (matchingTag && !existingTag) {
-      onTagAdd(matchingTag._id);
-      setInternalTagsSuggestions(
-        internalTagsSuggestions.filter((tag) => tag._id !== matchingTag._id)
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const matchingTag = tagsSuggestions.find(
+        (tag) => tag.name === inputValue
       );
+      const existingTag = tags.find((tag) => tag === matchingTag._id);
+      if (matchingTag && !existingTag) {
+        onTagAdd(matchingTag._id);
+        setInternalTagsSuggestions(
+          internalTagsSuggestions.filter((tag) => tag._id !== matchingTag._id)
+        );
+      }
+      setInputValue("");
     }
-    setInputValue("");
   };
 
   const handleTagAdd = (tagToAddID) => {
@@ -38,11 +42,11 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
     setInternalTagsSuggestions([...internalTagsSuggestions, removedTag]);
   };
 
-
   return (
-    <form onSubmit={onFormSubmit} className="new-task__form-tags">
+    <div className="new-task__form-tags">
       <div className="new-task__tags-input_suggestions">
         <input
+          onKeyPress={onFormSubmit}
           className="new-task__select-tags"
           value={inputValue}
           onChange={(event) => setInputValue(event.target.value)}
@@ -88,7 +92,7 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
           );
         })}
       </div>
-    </form>
+    </div>
   );
 };
 
