@@ -161,7 +161,7 @@ const FormTask = ({
               }
             >
               {columnList.map((column) => {
-                return <option value={column._id}>{column.name}</option>;
+                return <option key={column._id} value={column._id}>{column.name}</option>;
               })}
             </select>
           </span>

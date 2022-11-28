@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import uniqid from "uniqid";
 
 import "react-datepicker/dist/react-datepicker.css";
-import TagInput from "./TagInput";
 
 const UserForm = ({
   handleFormSubmit,
   CancelAddUserOpen,
   mode,
   userToEdit,
-  usersList,
 }) => {
   const [name, setName] = useState(mode === "add" ? "" : userToEdit.name);
   const [description, setDescription] = useState(
