@@ -1,8 +1,111 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const UsersPage = () => {
+import useFetch from "../hooks/useFetch";
+import UsersMain from "../components/UsersMain";
+import UserForm from "../components/UserForm";
+
+const UsersPage = ({ handleIsMobileNavOpen }) => {
+  const [usersList, setUsersList] = useState([]);
+  const [isAddUserOpen, setIsAddUserOpen] = useState(false);
+  const [mode, setMode] = useState("add");
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const URL = "https://todo-api-mwy8.onrender.com";
+  const [usersData, usersError, usersLoading] = useFetch(`${URL}/users`);
+
+  useEffect(() => {
+    if (usersData.records) {
+      setUsersList(usersData.records);
+    }
+  }, [usersData]);
+
+  const handleCancelAddUserOpen = () => {
+    setIsAddUserOpen(false);
+  };
+
+  const handleUserAdd = () => {
+    setMode("add");
+    setSelectedUser(null);
+    setIsAddUserOpen(true);
+  };
+
+  const handleFormAdd = (
+    name,
+    description,
+    imageURL,
+  ) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        description,
+        imageURL,
+      }),
+    };
+    fetch(`${URL}/users`, options)
+      .then((res) => res.json())
+      .then((data) => setUsersList([...usersList, data.records]));
+    handleCancelAddUserOpen();
+  };
+
+  const handleUserSelect = (clickedUser) => {
+    setMode("edit");
+    setSelectedUser(clickedUser);
+    setIsAddUserOpen(true);
+  };
+
+  const handleUserEdit = (
+    name,
+    description,
+    imageURL,
+  ) => {
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        description,
+        imageURL,
+      }),
+    };
+    fetch(`${URL}/users/${selectedUser._id}`, options)
+      .then((res) => res.json())
+      .then((data) => {
+        const editedUsersList = usersList.map((user) => {
+          if (user._id === data.records._id) {
+            return data.records;
+          } else {
+            return user;
+          }
+        });
+        setUsersList(editedUsersList);
+        handleCancelAddUserOpen();
+      });
+  };
+
   return (
-      <div>Users</div>
+    <>
+      <UsersMain
+        addUserOpen={handleUserAdd}
+        openMobileNav={handleIsMobileNavOpen}
+        usersList={usersList}
+        onUserSelect={handleUserSelect}
+      />
+      {isAddUserOpen && (
+        <UserForm
+          mode={mode}
+          handleFormSubmit={mode === "add" ? handleFormAdd : handleUserEdit}
+          CancelAddUserOpen={handleCancelAddUserOpen}
+          userToEdit={selectedUser}
+          usersList={usersData.records}
+        />
+      )}
+    </>
   );
 };
 

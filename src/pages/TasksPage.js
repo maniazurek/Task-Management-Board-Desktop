@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import Main from "../components/Main";
 import FormTask from "../components/FormTask";
-import Loading from "../components/Loading";
 
 const TasksPage = ({ handleIsMobileNavOpen }) => {
   const [tasksList, setTasksList] = useState([]);
