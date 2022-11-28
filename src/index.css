@@ -1,5 +1,5 @@
 html {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height: 100%;
 }
 
@@ -9,7 +9,7 @@ body {
   font-family: "Karla", sans-serif;
   box-sizing: border-box;
   background-color: #f2f4f7;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height: 100%;
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .main-content__section {
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .main-content__section-title {

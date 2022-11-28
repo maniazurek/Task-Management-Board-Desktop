@@ -38,6 +38,7 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
     setInternalTagsSuggestions([...internalTagsSuggestions, removedTag]);
   };
 
+
   return (
     <form onSubmit={onFormSubmit} className="new-task__form-tags">
       <div className="new-task__tags-input_suggestions">

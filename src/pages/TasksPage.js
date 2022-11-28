@@ -12,6 +12,8 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
 
   const URL = "https://todo-api-mwy8.onrender.com";
 
+  // const { data, error, loading } = useFetch(`${URL}/tasks`);
+
   const [userList, setUserList] = useState([]);
   const [columnList, setColumnList] = useState([]);
   const [tagsList, setTagsList] = useState([]);
@@ -81,6 +83,7 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
     fetch(`${URL}/tasks`, options)
       .then((res) => res.json())
       .then((data) => setTasksList([...tasksList, data.records]));
+    handleCancelAddTaskOpen();
 
     // const newTask = {
     //   id,
@@ -115,7 +118,9 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
   ) => {
     const options = {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         title,
         dueDate,

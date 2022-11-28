@@ -26,7 +26,9 @@ const FormTask = ({
     mode === "add" ? "" : taskToEdit.description
   );
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
-  const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags.map((tag) => tag._id));
+  const [tags, setTags] = useState(
+    mode === "add" ? [] : taskToEdit.tags.map((tag) => tag._id)
+  );
   const [column, setColumn] = useState(
     mode === "add"
       ? columnList.find((item) => item.name === "to do")._id
@@ -48,7 +50,6 @@ const FormTask = ({
       tags,
       column,
       comments,
-      tagsSuggestions,
     );
   };
 
@@ -59,8 +60,6 @@ const FormTask = ({
       setNewComment("");
     }
   };
-
-  console.log(assignee, column);
 
   return (
     <div className="add-task_overlay">
@@ -118,7 +117,8 @@ const FormTask = ({
             onTagAdd={(tag) => setTags([...tags, tag])}
             onTagRemove={(tagToRemove) =>
               setTags(tags.filter((tag) => tag !== tagToRemove))
-            } tagsSuggestions={tagsList}
+            }
+            tagsSuggestions={tagsList}
           />
         </span>
         <span className="new-task__container-choose">
