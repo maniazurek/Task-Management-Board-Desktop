@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import TasksPage from "./pages/TasksPage";
 import UsersPage from "./pages/UsersPage";
 import ColumnsPage from "./pages/ColumnsPage";
+import TagsPage from "./pages/TagsPage";
 
 const App = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -35,6 +36,10 @@ const App = () => {
         <Route
           path="/columns"
           element={<ColumnsPage openMobileNav={handleIsMobileNavOpen} />}
+        />
+        <Route
+          path="/tags"
+          element={<TagsPage openMobileNav={handleIsMobileNavOpen} />}
         />
       </Routes>
     </BrowserRouter>
