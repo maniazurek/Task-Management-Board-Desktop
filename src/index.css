@@ -1,5 +1,10 @@
+#root {
+  display: flex;
+  height: 100%;
+}
+
 html {
-  /* overflow-y: hidden; */
+  overflow-y: hidden;
   height: 100%;
 }
 
@@ -27,14 +32,19 @@ body {
 
 .main-content {
   margin-left: 240px;
-  padding: 80px 84px 152px 84px;
+  padding: 80px 84px 0 84px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  width: calc(100% - 240px);
   gap: 36px;
+  overflow-x: auto;
+  position: relative;
+  grid-auto-flow: column;
+  grid-auto-columns: 320px;
 }
 
 .main-content__section {
-  /* overflow-y: auto; */
+  overflow-y: auto;
+  height: 100%;
 }
 
 .main-content__section-title {
@@ -622,7 +632,6 @@ a:-webkit-any-link {
   background-size: cover;
   background-repeat: round;
 }
-
 
 @media all and (max-width: 768px) {
   .main-content {

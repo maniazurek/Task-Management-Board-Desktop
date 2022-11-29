@@ -24,6 +24,11 @@ const Main = ({ addTaskOpen, openMobileNav, tasksList, onTaskSelect }) => {
         tasksList={tasksList.filter((task) => task.column.name === "done")}
         onTaskSelect={onTaskSelect}
       />
+      <ToDoSection
+        columnName="test"
+        tasksList={tasksList.filter((task) => task.column.name === "test")}
+        onTaskSelect={onTaskSelect}
+      />
       <button onClick={addTaskOpen} className="main-content__add-task">
         <img className="main-content__add-icon" src={addImage} />
       </button>

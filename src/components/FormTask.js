@@ -187,7 +187,7 @@ const FormTask = ({
               {comments.map((newComment) => {
                 return (
                   <li className="new-task__list-element" key={uniqid()}>
-                    <span className="new-task__list-delete">X </span>
+                    <span className="new-task__list-delete" style={{cursor: "pointer"}}>X </span>
                     {newComment}
                   </li>
                 );
