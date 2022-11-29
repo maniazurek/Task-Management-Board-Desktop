@@ -113,7 +113,6 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
         handleCancelAddTaskOpen();
       });
   };
-
   return (
     <>
       <Main

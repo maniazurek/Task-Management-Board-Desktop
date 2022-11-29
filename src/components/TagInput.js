@@ -46,7 +46,7 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
     <div className="new-task__form-tags">
       <div className="new-task__tags-input_suggestions">
         <input
-        placeholder="Type tag..."
+          placeholder="Type tag..."
           onKeyPress={onFormSubmit}
           className="new-task__select-tags"
           value={inputValue}
@@ -64,16 +64,20 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
 
         <div className="new-task__tags-suggestions">
           {isSuggestionsOpen &&
-            internalTagsSuggestions.map((tag) => (
-              <span
-                style={{ color: tag.color }}
-                key={tag._id}
-                onClick={() => handleTagAdd(tag._id)}
-                className="new-task__tags-suggestions_element"
-              >
-                {tag.name}
-              </span>
-            ))}
+            internalTagsSuggestions
+              .filter((tag) =>
+                tag.name.toLowerCase().startsWith(inputValue.toLowerCase())
+              )
+              .map((tag) => (
+                <span
+                  style={{ color: tag.color }}
+                  key={tag._id}
+                  onClick={() => handleTagAdd(tag._id)}
+                  className="new-task__tags-suggestions_element"
+                >
+                  {tag.name}
+                </span>
+              ))}
         </div>
       </div>
       <div className="new-task__tags-selected">
