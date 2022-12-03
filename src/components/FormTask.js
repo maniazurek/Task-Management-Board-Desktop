@@ -111,7 +111,6 @@ const FormTask = ({
         </span>
         <span className="new-task__element-tags">
           <p className="new-task__label-tags">Tags</p>
-          {/* <TagsInput value={tags} onChange={(newTag) => setTags(newTag)} /> */}
           <TagInput
             tags={tags}
             onTagAdd={(tag) => setTags([...tags, tag])}
@@ -161,7 +160,11 @@ const FormTask = ({
               }
             >
               {columnList.map((column) => {
-                return <option key={column._id} value={column._id}>{column.name}</option>;
+                return (
+                  <option key={column._id} value={column._id}>
+                    {column.name}
+                  </option>
+                );
               })}
             </select>
           </span>
@@ -187,7 +190,14 @@ const FormTask = ({
               {comments.map((newComment) => {
                 return (
                   <li className="new-task__list-element" key={uniqid()}>
-                    <span className="new-task__list-delete" style={{cursor: "pointer"}}>X </span>
+                    <span
+                    key={uniqid()}
+                      className="new-task__list-delete"
+                      style={{ cursor: "pointer" }}
+                      onClick={onCommentDelete}
+                    >
+                      X{" "}
+                    </span>
                     {newComment}
                   </li>
                 );
