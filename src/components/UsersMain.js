@@ -5,7 +5,7 @@ import UsersSection from "./UsersSection";
 
 const UsersMain = ({ addUserOpen, openMobileNav, usersList, onUserSelect }) => {
   return (
-    <div className="main-content">
+    <div className="main-content__reusable">
       <button onClick={openMobileNav} className="hamburger-open"></button>
       <UsersSection
         columnName="users"

@@ -5,7 +5,7 @@ import TagsSection from "../components/TagsSection";
 
 const TagsMain = ({ addTagOpen, openMobileNav, tagsList, onTagSelect }) => {
   return (
-    <div className="main-content">
+    <div className="main-content__reusable">
       <button onClick={openMobileNav} className="hamburger-open"></button>
       <TagsSection
         columnName="tags"

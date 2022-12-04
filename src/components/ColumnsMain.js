@@ -5,7 +5,7 @@ import ColumnsSection from "../components/ColumnsSections"
 
 const ColumnsMain = ({ addColumnOpen, openMobileNav, columnsList, onColumnSelect }) => {
   return (
-    <div className="main-content">
+    <div className="main-content__reusable">
       <button onClick={openMobileNav} className="hamburger-open"></button>
       <ColumnsSection
         columnName="columns"

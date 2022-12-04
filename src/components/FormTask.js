@@ -61,6 +61,10 @@ const FormTask = ({
     }
   };
 
+  const onCommentDelete = (event) => {
+    comments.filter((item) => item.id !== event.target.value);
+  };
+
   return (
     <div className="add-task_overlay">
       <form onSubmit={onFormSubmit} className="new-task__container-add ">
@@ -191,7 +195,7 @@ const FormTask = ({
                 return (
                   <li className="new-task__list-element" key={uniqid()}>
                     <span
-                    key={uniqid()}
+                      key={uniqid()}
                       className="new-task__list-delete"
                       style={{ cursor: "pointer" }}
                       onClick={onCommentDelete}
