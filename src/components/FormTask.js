@@ -58,11 +58,12 @@ const FormTask = ({
       event.preventDefault();
       setComments([...comments, newComment]);
       setNewComment("");
+      console.log(newComment)
     }
   };
 
   const onCommentDelete = (event) => {
-    comments.filter((item) => item.id !== event.target.value);
+    comments.filter((item) => item !== event.target.value);
   };
 
   return (
