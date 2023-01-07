@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import Main from "../components/Main";
 import FormTask from "../components/FormTask";
 
-const TasksPage = ({ handleIsMobileNavOpen }) => {
+const TasksPage = () => {
   const [tasksList, setTasksList] = useState([]);
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const [mode, setMode] = useState("add");
@@ -117,7 +117,6 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
     <>
       <Main
         addTaskOpen={handleTaskAdd}
-        openMobileNav={handleIsMobileNavOpen}
         tasksList={tasksList}
         onTaskSelect={handleTaskSelect}
       />

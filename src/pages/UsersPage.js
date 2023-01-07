@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import UsersMain from "../components/UsersMain";
 import UserForm from "../components/UserForm";
 
-const UsersPage = ({ handleIsMobileNavOpen }) => {
+const UsersPage = () => {
   const [usersList, setUsersList] = useState([]);
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
   const [mode, setMode] = useState("add");
@@ -29,11 +29,9 @@ const UsersPage = ({ handleIsMobileNavOpen }) => {
     setIsAddUserOpen(true);
   };
 
-  const handleFormAdd = (
-    name,
-    description,
-    imageURL,
-  ) => {
+  console.log(usersList.length);
+
+  const handleFormAdd = (name, description, imageURL) => {
     const options = {
       method: "POST",
       headers: {
@@ -57,11 +55,7 @@ const UsersPage = ({ handleIsMobileNavOpen }) => {
     setIsAddUserOpen(true);
   };
 
-  const handleUserEdit = (
-    name,
-    description,
-    imageURL,
-  ) => {
+  const handleUserEdit = (name, description, imageURL) => {
     const options = {
       method: "PUT",
       headers: {
@@ -92,7 +86,6 @@ const UsersPage = ({ handleIsMobileNavOpen }) => {
     <>
       <UsersMain
         addUserOpen={handleUserAdd}
-        openMobileNav={handleIsMobileNavOpen}
         usersList={usersList}
         onUserSelect={handleUserSelect}
       />

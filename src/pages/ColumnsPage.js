@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import ColumnsMain from "../components/ColumnsMain";
 import ColumnsForm from "../components/ColumnForm";
 
-const ColumnsPage = ({ handleIsMobileNavOpen }) => {
+const ColumnsPage = () => {
   const [columnsList, setColumnsList] = useState([]);
   const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
   const [mode, setMode] = useState("add");
@@ -82,7 +82,6 @@ const ColumnsPage = ({ handleIsMobileNavOpen }) => {
     <>
       <ColumnsMain
         addColumnOpen={handleColumnAdd}
-        openMobileNav={handleIsMobileNavOpen}
         columnsList={columnsList}
         onColumnSelect={handleColumnSelect}
       />

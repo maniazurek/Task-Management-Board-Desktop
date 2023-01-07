@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import TagForm from "../components/TagForm";
 import TagsMain from "../components/TagsMain";
 
-const TagsPage = ({ handleIsMobileNavOpen }) => {
+const TagsPage = () => {
   const [tagsList, setTagsList] = useState([]);
   const [isAddTagOpen, setIsAddTagOpen] = useState(false);
   const [mode, setMode] = useState("add");
@@ -82,7 +82,6 @@ const TagsPage = ({ handleIsMobileNavOpen }) => {
     <>
       <TagsMain
         addTagOpen={handleTagAdd}
-        openMobileNav={handleIsMobileNavOpen}
         tagsList={tagsList}
         onTagSelect={handleTagSelect}
       />

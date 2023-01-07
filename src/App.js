@@ -8,39 +8,16 @@ import ColumnsPage from "./pages/ColumnsPage";
 import TagsPage from "./pages/TagsPage";
 
 const App = () => {
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-
-  const handleIsMobileNavOpen = () => {
-    setIsMobileNavOpen(true);
-  };
-
-  const handleMobileNavClose = () => {
-    setIsMobileNavOpen(false);
-  };
+  const URL = "https://to-do-api.fly.dev";
 
   return (
     <BrowserRouter>
-      <Navigation
-        isMobileNavOpen={isMobileNavOpen}
-        handleMobileNavClose={handleMobileNavClose}
-      />
+      <Navigation />
       <Routes>
-        <Route
-          path="/"
-          element={<TasksPage openMobileNav={handleIsMobileNavOpen} />}
-        />
-        <Route
-          path="/users"
-          element={<UsersPage openMobileNav={handleIsMobileNavOpen} />}
-        />
-        <Route
-          path="/columns"
-          element={<ColumnsPage openMobileNav={handleIsMobileNavOpen} />}
-        />
-        <Route
-          path="/tags"
-          element={<TagsPage openMobileNav={handleIsMobileNavOpen} />}
-        />
+        <Route path="/" element={<TasksPage />} />
+        <Route path="/users" element={<UsersPage />} />
+        <Route path="/columns" element={<ColumnsPage />} />
+        <Route path="/tags" element={<TagsPage />} />
       </Routes>
     </BrowserRouter>
   );

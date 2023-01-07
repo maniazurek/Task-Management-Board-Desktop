@@ -1,16 +1,13 @@
 import React from "react";
 import NavigationItems from "./NavigationItems";
 
-const Navigation = ({ isMobileNavOpen, handleMobileNavClose }) => {
+const Navigation = () => {
   return (
     <>
       <nav className="side-nav">
         <NavigationItems />
       </nav>
-      <div
-        onClick={handleMobileNavClose}
-        className="navigation-overlay_closed"
-      ></div>
+      <div className="navigation-overlay_closed"></div>
     </>
   );
 };

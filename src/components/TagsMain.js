@@ -3,10 +3,9 @@ import React from "react";
 import addImage from "../assets/add.png";
 import TagsSection from "../components/TagsSection";
 
-const TagsMain = ({ addTagOpen, openMobileNav, tagsList, onTagSelect }) => {
+const TagsMain = ({ addTagOpen, tagsList, onTagSelect }) => {
   return (
     <div className="main-content__reusable">
-      <button onClick={openMobileNav} className="hamburger-open"></button>
       <TagsSection
         columnName="tags"
         tagsList={tagsList}

@@ -3,10 +3,9 @@ import React from "react";
 import addImage from "../assets/add.png";
 import UsersSection from "./UsersSection";
 
-const UsersMain = ({ addUserOpen, openMobileNav, usersList, onUserSelect }) => {
+const UsersMain = ({ addUserOpen, usersList, onUserSelect }) => {
   return (
     <div className="main-content__reusable">
-      <button onClick={openMobileNav} className="hamburger-open"></button>
       <UsersSection
         columnName="users"
         usersList={usersList}

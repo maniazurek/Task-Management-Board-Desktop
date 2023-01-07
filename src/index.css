@@ -648,7 +648,6 @@ a:-webkit-any-link {
   flex-wrap: wrap;
   column-gap: 36px;
   row-gap: 24px;
-  flex-direction: column;
 }
 
 .simple-task__container__reusable {

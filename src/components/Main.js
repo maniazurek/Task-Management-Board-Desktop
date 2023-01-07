@@ -3,10 +3,9 @@ import React from "react";
 import addImage from "../assets/add.png";
 import ToDoSection from "./ToDoSection";
 
-const Main = ({ addTaskOpen, openMobileNav, tasksList, onTaskSelect }) => {
+const Main = ({ addTaskOpen, tasksList, onTaskSelect }) => {
   return (
     <div className="main-content">
-      <button onClick={openMobileNav} className="hamburger-open"></button>
       <ToDoSection
         columnName="to do"
         tasksList={tasksList.filter((task) => task.column.name === "to do")}
@@ -22,11 +21,6 @@ const Main = ({ addTaskOpen, openMobileNav, tasksList, onTaskSelect }) => {
       <ToDoSection
         columnName="done"
         tasksList={tasksList.filter((task) => task.column.name === "done")}
-        onTaskSelect={onTaskSelect}
-      />
-      <ToDoSection
-        columnName="test"
-        tasksList={tasksList.filter((task) => task.column.name === "test")}
         onTaskSelect={onTaskSelect}
       />
       <button onClick={addTaskOpen} className="main-content__add-task">

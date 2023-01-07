@@ -3,10 +3,9 @@ import React from "react";
 import addImage from "../assets/add.png";
 import ColumnsSection from "../components/ColumnsSections"
 
-const ColumnsMain = ({ addColumnOpen, openMobileNav, columnsList, onColumnSelect }) => {
+const ColumnsMain = ({ addColumnOpen, columnsList, onColumnSelect }) => {
   return (
     <div className="main-content__reusable">
-      <button onClick={openMobileNav} className="hamburger-open"></button>
       <ColumnsSection
         columnName="columns"
         columnsList={columnsList}
