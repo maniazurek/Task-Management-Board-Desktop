@@ -10,7 +10,7 @@ const TagsPage = ({ handleIsMobileNavOpen }) => {
   const [mode, setMode] = useState("add");
   const [selectedTag, setSelectedTag] = useState(null);
 
-  const URL = "https://todo-api-mwy8.onrender.com";
+  const URL = "https://to-do-api.fly.dev";
   const [tagsData, tagsError, tagsLoading] = useFetch(`${URL}/tags`);
 
   useEffect(() => {

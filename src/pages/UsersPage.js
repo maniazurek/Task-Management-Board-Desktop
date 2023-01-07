@@ -10,7 +10,7 @@ const UsersPage = ({ handleIsMobileNavOpen }) => {
   const [mode, setMode] = useState("add");
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const URL = "https://todo-api-mwy8.onrender.com";
+  const URL = "https://to-do-api.fly.dev";
   const [usersData, usersError, usersLoading] = useFetch(`${URL}/users`);
 
   useEffect(() => {

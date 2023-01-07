@@ -20,21 +20,21 @@ const ColumnForm = ({
   return (
     <div className="add-task_overlay">
       <form onSubmit={onFormSubmit} className="new-task__container-add ">
-            <span className="new-task__element-title">
-              <label
-                className="new-task__label-title"
-                htmlFor="new-task__input-title"
-              >
-                Column
-              </label>
-              <input
-                type="text"
-                placeholder="Type column"
-                className="new-task__input-title"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-              />
-            </span>
+        <span className="new-task__element-title">
+          <label
+            className="new-task__label-title"
+            htmlFor="new-task__input-title"
+          >
+            Column
+          </label>
+          <input
+            type="text"
+            placeholder="Type column"
+            className="new-task__input-title"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+        </span>
         <button
           onClick={CancelAddColumnOpen}
           className="new-task__button-cancel"

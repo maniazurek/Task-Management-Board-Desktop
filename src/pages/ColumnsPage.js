@@ -10,7 +10,7 @@ const ColumnsPage = ({ handleIsMobileNavOpen }) => {
   const [mode, setMode] = useState("add");
   const [selectedColumn, setSelectedColumn] = useState(null);
 
-  const URL = "https://todo-api-mwy8.onrender.com";
+  const URL = "https://to-do-api.fly.dev";
   const [columnsData, columnsError, columnsLoading] = useFetch(
     `${URL}/columns`
   );

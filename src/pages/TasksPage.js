@@ -10,7 +10,7 @@ const TasksPage = ({ handleIsMobileNavOpen }) => {
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
 
-  const URL = "https://todo-api-mwy8.onrender.com";
+  const URL = "https://to-do-api.fly.dev";
 
   const [tasksData, tasksError, tasksLoading] = useFetch(`${URL}/tasks`);
   const [usersData, usersError, usersLoading] = useFetch(`${URL}/users`);
