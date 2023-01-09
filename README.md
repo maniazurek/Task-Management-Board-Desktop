@@ -6,74 +6,97 @@
 
 # Documentation:
 
-API
+## API
 Base url: https://to-do-api.fly.dev
 
-1. GET /tasks
-2. POST /tasks
+## 1. GET /tasks
+
+## 2. POST /tasks
+
 Body:
 
-title: String,
-description: String,
-link: String,
-tags: Array<tagID>,
-dueDate: Date,
-assignee: userID,
-column: columnID,
-comments: Array<String>
-3. PUT /tasks/:id
+1. title: String,
+2. description: String,
+3. link: String,
+4. tags: Array<tagID>,
+5. dueDate: Date,
+6. assignee: userID,
+7. column: columnID,
+8. comments: Array<String>
+
+## 3. PUT /tasks/:id
+
 Path parameters:
 
-id: todoID
+1. id: todoID
+
 Body:
 
-title: String,
-description: String,
-link: String,
-tags: Array<tagID>,
-dueDate: Date,
-assignee: userID,
-column: columnID,
-comments: Array<String>
-4. GET /tags
-5. POST /tags
+1. title: String,
+2. description: String,
+3. link: String,
+4. tags: Array<tagID>,
+5. dueDate: Date,
+6. assignee: userID,
+7. column: columnID,
+8. comments: Array<String>
+
+## 4. GET /tags
+
+## 5. POST /tags
+
 Body:
 
-name: String,
-color: String
-6. PUT /tags/:id
+1. name: String,
+2. color: String
+
+## 6. PUT /tags/:id
+
 Path parameters:
 
-id: tagID
+1. id: tagID
+
 Body:
 
-name: String,
-color: String
-7. GET /users
-8. POST /users
+1. name: String,
+2. color: String
+
+## 7. GET /users
+
+## 8. POST /users
+
 Body:
 
-name: String,
-description: String,
-imageURL: String
-9. PUT /users/:id
+1. name: String,
+2. description: String,
+3. imageURL: String
+
+## 9. PUT /users/:id
+
 Path parameters:
 
-id: userID
+1. id: userID
+
 Body:
 
-name: String,
-description: String,
-imageURL: String
-10. GET /columns
-11. POST /columns
+1. name: String,
+2. description: String,
+3. imageURL: String
+
+## 10. GET /columns
+
+## 11. POST /columns
+
 Body:
 
-name: String
-12. PUT /columns/:id
+1. name: String
+
+## 12. PUT /columns/:id
+
 Path parameters:
 
-id: columnID
+1. id: columnID
+
 Body:
 
-name: String
+1. name: String
