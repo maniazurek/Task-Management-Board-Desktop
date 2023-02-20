@@ -25,14 +25,19 @@ const TasksPage = () => {
     }
   }, [tasksData]);
 
+  useEffect(() => {
+    window.addEventListener("click", () => setIsAddTaskOpen(false));
+  }, []);
+
   const handleCancelAddTaskOpen = () => {
     setIsAddTaskOpen(false);
   };
 
-  const handleTaskAdd = () => {
+  const handleTaskAdd = (event) => {
     setMode("add");
     setSelectedTask(null);
     setIsAddTaskOpen(true);
+    event.stopPropagation();
   };
 
   const handleFormAdd = (
