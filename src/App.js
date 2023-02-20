@@ -19,10 +19,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navigation
-        tasksList={tasksData.records?.length}
-        usersList={usersData.records?.length}
-        columnsList={columnsData.records?.length}
-        tagsList={tagsData.records?.length}
+        tasksListLenght={tasksData.records?.length}
+        usersListLenght={usersData.records?.length}
+        columnsListLenght={columnsData.records?.length}
+        tagsListLenght={tagsData.records?.length}
       />
       <Routes>
         <Route path="/" element={<TasksPage />} />

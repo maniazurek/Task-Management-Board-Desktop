@@ -1,15 +1,15 @@
 import React from "react";
 import NavigationItems from "./NavigationItems";
 
-const Navigation = ({ tasksList, usersList, columnsList, tagsList }) => {
+const Navigation = ({ tasksListLenght, usersListLenght, columnsListLenght, tagsListLenght }) => {
   return (
     <>
       <nav className="side-nav">
         <NavigationItems
-          tasksList={tasksList}
-          usersList={usersList}
-          columnsList={columnsList}
-          tagsList={tagsList}
+          tasksListLenght={tasksListLenght}
+          usersListLenght={usersListLenght}
+          columnsListLenght={columnsListLenght}
+          tagsListLenght={tagsListLenght}
         />
       </nav>
       <div className="navigation-overlay_closed"></div>
