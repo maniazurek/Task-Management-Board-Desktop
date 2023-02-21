@@ -25,19 +25,14 @@ const TasksPage = () => {
     }
   }, [tasksData]);
 
-  useEffect(() => {
-    window.addEventListener("click", () => setIsAddTaskOpen(false));
-  }, []);
-
   const handleCancelAddTaskOpen = () => {
     setIsAddTaskOpen(false);
   };
 
-  const handleTaskAdd = (event) => {
+  const handleTaskAdd = () => {
     setMode("add");
     setSelectedTask(null);
     setIsAddTaskOpen(true);
-    event.stopPropagation();
   };
 
   const handleFormAdd = (
@@ -72,10 +67,11 @@ const TasksPage = () => {
     handleCancelAddTaskOpen();
   };
 
-  const handleTaskSelect = (clickedTask) => {
+  const handleTaskSelect = (clickedTask, event) => {
     setMode("edit");
     setSelectedTask(clickedTask);
     setIsAddTaskOpen(true);
+    event.stopPropagation();
   };
 
   const handleTaskEdit = (

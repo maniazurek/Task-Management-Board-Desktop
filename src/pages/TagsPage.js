@@ -19,19 +19,14 @@ const TagsPage = () => {
     }
   }, [tagsData]);
 
-  useEffect(() => {
-    window.addEventListener("click", () => setIsAddTagOpen(false));
-  }, []);
-
   const handleCancelAddTagOpen = () => {
     setIsAddTagOpen(false);
   };
 
-  const handleTagAdd = (event) => {
+  const handleTagAdd = () => {
     setMode("add");
     setSelectedTag(null);
     setIsAddTagOpen(true);
-    event.stopPropagation();
   };
 
   const handleFormAdd = (name, color) => {

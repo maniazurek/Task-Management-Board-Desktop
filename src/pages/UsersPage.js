@@ -23,15 +23,10 @@ const UsersPage = () => {
     setIsAddUserOpen(false);
   };
 
-  useEffect(() => {
-    window.addEventListener("click", () => setIsAddUserOpen(false));
-  }, []);
-
   const handleUserAdd = (event) => {
     setMode("add");
     setSelectedUser(null);
     setIsAddUserOpen(true);
-    event.stopPropagation();
   };
 
   console.log(usersList.length);

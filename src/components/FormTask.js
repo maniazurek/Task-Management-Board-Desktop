@@ -58,14 +58,19 @@ const FormTask = ({
       event.preventDefault();
       setComments([...comments, newComment]);
       setNewComment("");
-      console.log(newComment)
     }
+    console.log(comments);
   };
 
-  const onCommentDelete = (event) => {
-    comments.filter((item) => item !== event.target.value);
+  const onCommentRemove = (commentToRemove) => {
+    setComments(comments.filter((comment) => comment !== commentToRemove));
   };
 
+  const onCommentDelete = (commentToRemoveId) => {
+    onCommentRemove(commentToRemoveId);
+  };
+
+  
   return (
     <div className="add-task_overlay">
       <form onSubmit={onFormSubmit} className="new-task__container-add ">
@@ -194,12 +199,15 @@ const FormTask = ({
             <ul className="new-task__list">
               {comments.map((newComment) => {
                 return (
-                  <li className="new-task__list-element" key={uniqid()}>
+                  <li
+                    className="new-task__list-element"
+                    key={uniqid()}
+                    onClick={() => onCommentDelete(newComment)}
+                  >
                     <span
                       key={uniqid()}
                       className="new-task__list-delete"
                       style={{ cursor: "pointer" }}
-                      onClick={onCommentDelete}
                     >
                       X{" "}
                     </span>

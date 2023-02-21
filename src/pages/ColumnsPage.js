@@ -21,10 +21,6 @@ const ColumnsPage = () => {
     }
   }, [columnsData]);
 
-  useEffect(() => {
-    window.addEventListener("click", () => setIsAddColumnOpen(false));
-  }, []);
-
   const handleCancelAddColumnOpen = () => {
     setIsAddColumnOpen(false);
   };
@@ -33,7 +29,6 @@ const ColumnsPage = () => {
     setMode("add");
     setSelectedColumn(null);
     setIsAddColumnOpen(true);
-    event.stopPropagation();
   };
 
   const handleFormAdd = (name) => {
