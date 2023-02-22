@@ -29,8 +29,6 @@ const UsersPage = () => {
     setIsAddUserOpen(true);
   };
 
-  console.log(usersList.length);
-
   const handleFormAdd = (name, description, imageURL) => {
     const options = {
       method: "POST",
